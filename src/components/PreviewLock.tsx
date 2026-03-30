@@ -134,17 +134,23 @@ const PreviewLock = () => {
                       <p className="text-xs font-semibold mb-0.5" style={{ color: 'hsl(0 0% 55%)' }}>BASIC</p>
                       <p className="text-sm font-bold mb-1" style={{ color: 'hsl(0 0% 90%)' }}>Launch As-Is — $299</p>
                       <p className="text-[11px] mb-2 flex-1" style={{ color: 'hsl(0 0% 60%)' }}>Get your website exactly as shown in this version. Fastest way to go live.</p>
-                      <a
-                        href={STRIPE_299}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block w-full py-1.5 rounded text-center text-xs font-semibold transition-colors"
-                        style={{ border: `1px solid ${CTA_COLOR}`, color: CTA_COLOR, backgroundColor: 'transparent' }}
-                        onMouseEnter={e => { e.currentTarget.style.backgroundColor = CTA_COLOR; e.currentTarget.style.color = 'black'; }}
-                        onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = CTA_COLOR; }}
-                      >
-                        Launch This Version
-                      </a>
+                      {isOnA ? (
+                        <a
+                          href={STRIPE_299}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block w-full py-1.5 rounded text-center text-xs font-semibold transition-colors"
+                          style={{ border: `1px solid ${CTA_COLOR}`, color: CTA_COLOR, backgroundColor: 'transparent' }}
+                          onMouseEnter={e => { e.currentTarget.style.backgroundColor = CTA_COLOR; e.currentTarget.style.color = 'black'; }}
+                          onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = CTA_COLOR; }}
+                        >
+                          Launch This Version
+                        </a>
+                      ) : (
+                        <span className="block w-full py-1.5 rounded text-center text-xs font-semibold select-none" style={{ border: '1px solid hsl(0 0% 22%)', color: 'hsl(0 0% 40%)', cursor: 'default' }}>
+                          Launch This Version
+                        </span>
+                      )}
                     </div>
 
                     {/* $499 */}
