@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ScrollToTop from "@/components/ScrollToTop";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
+import PreviewLock from "@/components/PreviewLock";
 import Index from "./pages/Index";
 import Beers from "./pages/Beers";
 import AllBeers from "./pages/AllBeers";

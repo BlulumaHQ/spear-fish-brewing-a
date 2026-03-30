@@ -33,7 +33,7 @@ const Header = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerClass}`}>
+    <header className={`fixed left-0 right-0 z-50 transition-all duration-300 ${headerClass}`} style={{ top: '36px' }}>
       <div className="container-wide flex items-center justify-between h-20 lg:h-24">
         <Link to="/" className="flex-shrink-0">
           <img
