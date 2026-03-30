@@ -39,7 +39,7 @@ export const beers: Beer[] = [
     style: "Hazy IPA",
     abv: 6,
     description: "Hazy IPA with thiolized yeast (thiols are flavor compounds) bringing tropical fruit flavors & aromas to this hop-heavy beer.",
-    image: "https://www.spearfishbrewing.com/wp-content/uploads/2023/01/20230112_140208-169x300.jpg",
+    image: "/images/thiol-by-combat.jpg",
     featured: true,
   },
   {
@@ -47,7 +47,9 @@ export const beers: Beer[] = [
     style: "Imperial Stout (Barrel-Aged)",
     abv: 16.5,
     description: "Batch #1 of our Barrel-Aged Series. Our Bird Bones Imperial Stout was aged in malted whiskey barrels for 6 months then blended. Smooth, lightly carbonated, & bold.",
+    image: "/images/big-bird-bones.jpg",
     note: "500ml bottle $16 · To-go only",
+    featured: true,
   },
   {
     name: "Half a Horse",
@@ -72,6 +74,7 @@ export const beers: Beer[] = [
     description: "This classic German strong lager is brewed with traditional German grains and hops.",
     image: "https://www.spearfishbrewing.com/wp-content/uploads/2020/10/IMG_0709-300x200.jpg",
     award: "2021 NABA Silver · 2021 US Beer Open Silver · 2020 US Beer Open Gold",
+    featured: true,
   },
   {
     name: "The Schwa",
@@ -88,6 +91,7 @@ export const beers: Beer[] = [
     description: "Fermented with lactobacillus, dry with strong lemon tartness, flavors of lemon, alcohol, and champagne.",
     image: "https://www.spearfishbrewing.com/wp-content/uploads/2018/02/bobcat-medal-300x200.jpg",
     award: "2020 US Beer Open Championships Gold",
+    featured: true,
   },
   {
     name: "Venner Beer",
@@ -103,7 +107,7 @@ export const beers: Beer[] = [
     abv: 5.4,
     description: "Glowing copper color, toasted malt and caramel sweetness on the palate, gentle floral hop finish.",
     image: "https://www.spearfishbrewing.com/wp-content/uploads/2018/02/copper-silver-medal-300x200.jpg",
-    award: "2019 NABA Silver · 2023 GABF Gold",
+    award: "2023 GABF Gold · 2019 NABA Silver",
     featured: true,
   },
   {
@@ -112,6 +116,7 @@ export const beers: Beer[] = [
     abv: 5.7,
     description: "Hazy pale gold with white head, sweet malt and bread flavors, medium body, soft mouthfeel.",
     image: "https://www.spearfishbrewing.com/wp-content/uploads/2018/02/IMG_8285-300x200.jpg",
+    featured: true,
   },
   {
     name: "ADVENTUREPANTS!",
@@ -120,19 +125,44 @@ export const beers: Beer[] = [
     description: "Huge American hop additions! Golden with hop haze, funky pineapple and tropical fruit hop aroma, boozy.",
     image: "https://www.spearfishbrewing.com/wp-content/uploads/2018/02/adventurepants-300x200.jpg",
     award: "2020 US Beer Open Championships Gold",
+    featured: true,
   },
 ];
 
-export const awards = [
+export const featuredAwards = [
   { beer: "Spearfish Brewing", award: "Brewery of the Year Top Ten — 2020 US Beer Open Championships" },
-  { beer: "The Hills Have Ryes", award: "2024 US Beer Open Championship Gold" },
-  { beer: "The Hills Have Ryes", award: "2024 World Beer Cup Silver" },
-  { beer: "The Hills Have Ryes", award: "2023 World Beer Cup Gold" },
-  { beer: "Copper Midge", award: "2023 Great American Beer Festival Gold" },
-  { beer: "Copper Midge", award: "2019 NABA Silver Medal — American Amber Lager" },
-  { beer: "Festbier", award: "2021 NABA Silver Medal" },
-  { beer: "Festbier", award: "2021 US Beer Open Silver Medal" },
-  { beer: "Festbier", award: "2020 US Beer Open Gold Medal" },
-  { beer: "ADVENTUREPANTS!", award: "2020 US Beer Open Championships Gold" },
-  { beer: "Bobcat Logic", award: "2020 US Beer Open Championships Gold" },
+  { beer: "The Hills Have Ryes", award: "2024 US Beer Open Championship Gold (Rye Beer)" },
+  { beer: "The Hills Have Ryes", award: "2024 World Beer Cup Silver (Rye Beer)" },
+  { beer: "Copper Midge", award: "2023 Great American Beer Festival Gold (Kellerbier or Zwickelbier)" },
+  { beer: "Thiol by Combat", award: "2024 International Beer Awards Silver (Hazy or Juicy Strong Pale Ale)" },
+];
+
+export const fullAwards = [
+  { beer: "Spearfish Brewing", award: "Brewery of the Year Top Ten — 2020 US Beer Open Championships" },
+  { beer: "The Hills Have Ryes", award: "2024 US Beer Open Championship Gold (Rye Beer)" },
+  { beer: "The Hills Have Ryes", award: "2024 World Beer Cup Silver (Rye Beer)" },
+  { beer: "The Hills Have Ryes", award: "2023 World Beer Cup Gold (Rye Beer)" },
+  { beer: "The Hills Have Ryes", award: "2023 International Beer Awards Silver (Rye Beer)" },
+  { beer: "The Hills Have Ryes", award: "2021 North American Brewery Association Gold (Rye Beer)" },
+  { beer: "The Hills Have Ryes", award: "2021 US Beer Open Championships Bronze (Rye Beer)" },
+  { beer: "The Hills Have Ryes", award: "2019 US Beer Open Championships Silver (Rye Beer)" },
+  { beer: "The Hills Have Ryes", award: "2018 North American Brewers Association Bronze (Rye Beer)" },
+  { beer: "Adventurepants!", award: "2023 US Beer Open Championships Silver (Near Gluten Free IPA/DIPA)" },
+  { beer: "Adventurepants!", award: "2020 US Beer Open Championships Gold (Near Gluten Free IPA/DIPA)" },
+  { beer: "Copper Midge", award: "2024 International Beer Awards Bronze (Marzen/Oktoberfest)" },
+  { beer: "Copper Midge", award: "2023 Great American Beer Festival Gold (Kellerbier or Zwickelbier)" },
+  { beer: "Copper Midge", award: "2022 US Beer Open Championship Gold (American Amber)" },
+  { beer: "Copper Midge", award: "2020 US Beer Open Championships Silver (Near Gluten Free Lager)" },
+  { beer: "Copper Midge", award: "2019 North American Brewers Association Silver (American-Style Amber Lager)" },
+  { beer: "Fest Bier", award: "2021 North American Brewers Association Silver (Maibock)" },
+  { beer: "Fest Bier", award: "2021 US Beer Open Championships Silver (Hell/Maibock)" },
+  { beer: "Fest Bier", award: "2020 US Beer Open Championships Gold (Hell/Maibock)" },
+  { beer: "Termes Beer", award: "2019 Great American Beer Festival Bronze (American-Style Wheat Beer)" },
+  { beer: "Bobcat Logic", award: "2019 North American Brewers Association Gold (American Sour Ale)" },
+  { beer: "Thiol by Combat", award: "2024 International Beer Awards Silver (Hazy or Juicy Strong Pale Ale)" },
+  { beer: "Thiol by Combat", award: "2024 US Beer Open Championship Bronze (Near Gluten Free)" },
+  { beer: "Aggressive Goat", award: "2024 US Beer Open Championship Gold (Strong Bock)" },
+  { beer: "Aggressive Goat", award: "2019 North American Brewers Association Silver (Traditional Bock)" },
+  { beer: "Aggressive Goat", award: "2019 US Beer Open Championships Bronze (Traditional Bock)" },
+  { beer: "Bird Bones", award: "2021 Great American Beer Festival Bronze (Imperial Stout)" },
 ];

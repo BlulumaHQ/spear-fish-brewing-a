@@ -1,18 +1,24 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Trophy, ChevronRight } from 'lucide-react';
+import { MapPin, Phone, Trophy, ChevronRight, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FadeIn from '@/components/FadeIn';
 import PageMeta from '@/components/PageMeta';
-import { beers, awards } from '@/data/beers';
-import heroImage from '@/assets/hero-brewery.jpg';
-import foodImage from '@/assets/food-spread.jpg';
+import { beers, featuredAwards } from '@/data/beers';
+import { useMemo } from 'react';
 
-const featuredBeers = beers.filter(b => b.featured).slice(0, 4);
+const validBeers = beers.filter(b => b.featured && b.image);
+
+function getRandomBeers(pool: typeof beers, count: number) {
+  const shuffled = [...pool].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count);
+}
 
 const Index = () => {
+  const tapBeers = useMemo(() => getRandomBeers(validBeers, 4), []);
+
   return (
     <>
       <PageMeta
@@ -22,17 +28,17 @@ const Index = () => {
       <Header />
 
       {/* Hero */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroImage} alt="Spearfish Brewing Company taproom" className="w-full h-full object-cover" width={1920} height={1080} />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
+          <img src="/images/spearfish-hero.png" alt="Spearfish Brewing Company taproom" className="w-full h-full object-cover" width={1920} height={1080} />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70" />
         </div>
-        <div className="relative z-10 text-center px-5 max-w-4xl" style={{ color: 'hsl(var(--brew-dark-fg))' }}>
+        <div className="relative z-10 text-center px-5 max-w-4xl pt-24 pb-16" style={{ color: 'hsl(var(--brew-dark-fg))' }}>
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-heading font-black text-4xl sm:text-5xl md:text-6xl lg:text-[72px] leading-[1.05] tracking-tight mb-6"
+            className="font-heading font-black text-[38px] sm:text-5xl md:text-6xl lg:text-[72px] leading-[1.05] tracking-tight mb-6"
           >
             BLACK HILLS{'\n'}CRAFT BEER
           </motion.h1>
@@ -60,6 +66,30 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Hours */}
+      <section className="py-12 md:py-16 section-dark">
+        <div className="container-narrow">
+          <FadeIn>
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-16">
+              <div className="flex items-center gap-3">
+                <Clock size={24} className="gold-accent" />
+                <h2 className="text-xl md:text-2xl font-bold">Hours</h2>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-10 text-center sm:text-left">
+                <div>
+                  <div className="text-sm font-semibold section-muted uppercase tracking-wider mb-1">Sun – Thu</div>
+                  <div className="text-lg font-bold">11am – 10pm</div>
+                </div>
+                <div>
+                  <div className="text-sm font-semibold section-muted uppercase tracking-wider mb-1">Fri – Sat</div>
+                  <div className="text-lg font-bold">11am – 11pm</div>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
       {/* Vision */}
       <section className="section-padding">
         <div className="container-narrow">
@@ -74,7 +104,7 @@ const Index = () => {
                   The vision of Spearfish Brewing is to brew American beer styles that appeal to all beer drinkers. We want to create beers for those who appreciate the clean, crisp flavor of domestic light lagers and hop-head craft fanatics alike.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  Our brewery features South Dakota's first horizontal lagering tanks and a three-stage reverse osmosis water filtration system that allow us to create clean award-winning lagers like the Copper Midge Amber Lager, the Aggressive Goat Bock Lager, and Nathan's favorite beer, the Venner Beer Premium Light Lager.
+                  Our brewery features South Dakota's first horizontal lagering tanks and a three-stage reverse osmosis water filtration system that allow us to create clean award-winning lagers.
                 </p>
               </div>
               <div className="relative aspect-[4/3] rounded-lg overflow-hidden">
@@ -83,8 +113,6 @@ const Index = () => {
                   alt="Spearfish Brewing at the Great American Beer Festival"
                   className="w-full h-full object-cover"
                   loading="lazy"
-                  width={1024}
-                  height={683}
                 />
               </div>
             </div>
@@ -101,24 +129,20 @@ const Index = () => {
               Rotating selection of sixteen modern and classic American craft beers
             </p>
           </FadeIn>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredBeers.map((beer, i) => (
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            {tapBeers.map((beer, i) => (
               <FadeIn key={beer.name} delay={i * 0.1}>
-                <div className="brew-card rounded-lg p-6 transition-colors h-full flex flex-col">
-                  <div className="text-xs font-bold uppercase tracking-[0.15em] gold-accent mb-2">{beer.style}</div>
-                  <h3 className="text-xl font-bold mb-2">{beer.name}</h3>
-                  <p className="section-muted text-sm mb-4 leading-relaxed flex-1">{beer.description}</p>
-                  <div className="flex gap-4 text-xs font-semibold section-dim">
-                    <span>{beer.abv}% ABV</span>
-                    
+                <Link to="/beers" className="block group">
+                  <div className="aspect-square rounded-lg overflow-hidden mb-3 bg-muted">
+                    <img
+                      src={beer.image}
+                      alt={beer.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
                   </div>
-                  {beer.award && (
-                    <div className="mt-3 flex items-center gap-1.5 text-xs gold-accent">
-                      <Trophy size={12} />
-                      <span>Award Winner</span>
-                    </div>
-                  )}
-                </div>
+                  <h3 className="text-base md:text-lg font-bold text-center">{beer.name}</h3>
+                </Link>
               </FadeIn>
             ))}
           </div>
@@ -134,7 +158,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Awards */}
+      {/* Awards — 5 only */}
       <section className="section-padding section-surface">
         <div className="container-narrow">
           <FadeIn>
@@ -144,8 +168,8 @@ const Index = () => {
               <p className="text-muted-foreground">Recognized at the nation's most prestigious beer competitions</p>
             </div>
           </FadeIn>
-          <div className="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
-            {awards.map((a, i) => (
+          <div className="space-y-4 max-w-2xl mx-auto">
+            {featuredAwards.map((a, i) => (
               <FadeIn key={i} delay={i * 0.05}>
                 <div className="flex items-start gap-3 p-4 rounded-lg bg-background">
                   <Trophy size={16} className="gold-accent mt-0.5 flex-shrink-0" />
@@ -157,6 +181,13 @@ const Index = () => {
               </FadeIn>
             ))}
           </div>
+          <FadeIn>
+            <div className="text-center mt-8">
+              <Button variant="default" asChild>
+                <Link to="/about">VIEW FULL AWARDS ARCHIVE</Link>
+              </Button>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
@@ -166,10 +197,10 @@ const Index = () => {
           <FadeIn>
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="relative aspect-[4/3] rounded-lg overflow-hidden">
-                <img src={foodImage} alt="Taproom food menu" className="w-full h-full object-cover" loading="lazy" width={1024} height={768} />
+                <img src="https://www.spearfishbrewing.com/wp-content/uploads/2019/03/20231019_114450-576x1024.jpg" alt="SBC Kitchen pretzel bites" className="w-full h-full object-cover" loading="lazy" />
               </div>
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">Taproom Food Menu</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">SBC Kitchen Now Open!</h2>
                 <p className="text-lg text-muted-foreground mb-2">Offering paninis, flatbreads, wings, nachos & more</p>
                 <p className="text-muted-foreground mb-8 leading-relaxed">
                   A flavorful pub menu built for sharing with friends and family. Indoor and outdoor seating available.

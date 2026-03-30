@@ -7,6 +7,7 @@ const navItems = [
   { label: 'Home', path: '/' },
   { label: 'Beer', path: '/beers' },
   { label: 'Food', path: '/menu' },
+  { label: 'About', path: '/about' },
   { label: 'Shop', path: 'https://spearfish-brewing.square.site/', external: true },
   { label: 'Contact Us', path: '/contact-us' },
 ];
@@ -29,6 +30,8 @@ const Header = () => {
   const isHome = location.pathname === '/';
   const headerClass = scrolled || !isHome ? 'header-solid' : 'header-transparent';
 
+  const isActive = (path: string) => location.pathname === path;
+
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerClass}`}>
       <div className="container-wide flex items-center justify-between h-20 lg:h-24">
@@ -41,29 +44,47 @@ const Header = () => {
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
-          {navItems.map(item =>
-            item.external ? (
-              <a
-                key={item.path}
-                href={item.path}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs font-bold uppercase tracking-[0.2em] transition-opacity text-brew-dark-fg hover:opacity-70"
-              >
-                {item.label}
-              </a>
-            ) : (
+          {navItems.map(item => {
+            const active = !item.external && isActive(item.path);
+            const baseClass = "relative text-xs font-bold uppercase tracking-[0.2em] transition-opacity text-brew-dark-fg group py-2";
+
+            if (item.external) {
+              return (
+                <a
+                  key={item.path}
+                  href={item.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${baseClass} hover:opacity-70`}
+                >
+                  <span className="absolute -top-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    <img src="/images/icon-up.svg" alt="" className="w-4 h-4" />
+                  </span>
+                  {item.label}
+                </a>
+              );
+            }
+
+            return (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`text-xs font-bold uppercase tracking-[0.2em] transition-opacity text-brew-dark-fg ${
-                  location.pathname === item.path ? 'opacity-60' : 'hover:opacity-70'
+                className={`${baseClass} ${
+                  active
+                    ? 'opacity-100 border-b-2'
+                    : 'hover:opacity-70'
                 }`}
+                style={active ? { borderColor: 'hsl(38 65% 52%)' , color: 'hsl(38 65% 52%)' } : undefined}
               >
+                {!active && (
+                  <span className="absolute -top-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    <img src="/images/icon-up.svg" alt="" className="w-4 h-4" />
+                  </span>
+                )}
                 {item.label}
               </Link>
-            )
-          )}
+            );
+          })}
         </nav>
 
         <button
@@ -85,31 +106,35 @@ const Header = () => {
             style={{ backgroundColor: 'hsl(var(--brew-dark) / 0.97)' }}
           >
             <nav className="flex flex-col py-4 px-5 gap-1">
-              {navItems.map(item =>
-                item.external ? (
-                  <a
-                    key={item.path}
-                    href={item.path}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setMobileOpen(false)}
-                    className="py-3 text-sm font-bold uppercase tracking-[0.15em] text-brew-dark-fg transition-opacity hover:opacity-70"
-                  >
-                    {item.label}
-                  </a>
-                ) : (
+              {navItems.map(item => {
+                const active = !item.external && isActive(item.path);
+                if (item.external) {
+                  return (
+                    <a
+                      key={item.path}
+                      href={item.path}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setMobileOpen(false)}
+                      className="py-3 text-sm font-bold uppercase tracking-[0.15em] text-brew-dark-fg transition-opacity hover:opacity-70"
+                    >
+                      {item.label}
+                    </a>
+                  );
+                }
+                return (
                   <Link
                     key={item.path}
                     to={item.path}
                     onClick={() => setMobileOpen(false)}
-                    className={`py-3 text-sm font-bold uppercase tracking-[0.15em] text-brew-dark-fg transition-opacity ${
-                      location.pathname === item.path ? 'opacity-60' : 'hover:opacity-70'
+                    className={`py-3 text-sm font-bold uppercase tracking-[0.15em] transition-opacity ${
+                      active ? 'gold-accent' : 'text-brew-dark-fg hover:opacity-70'
                     }`}
                   >
                     {item.label}
                   </Link>
-                )
-              )}
+                );
+              })}
             </nav>
           </motion.div>
         )}
