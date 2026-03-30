@@ -74,7 +74,7 @@ const Header = () => {
                     ? 'opacity-100 border-b-2'
                     : 'hover:opacity-70'
                 }`}
-                style={active ? { borderColor: 'hsl(38 65% 52%)' , color: 'hsl(38 65% 52%)' } : undefined}
+                style={active ? { borderColor: 'hsl(38 65% 52%)', color: 'hsl(38 65% 52%)' } : undefined}
               >
                 {!active && (
                   <span className="absolute -top-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
