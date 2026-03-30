@@ -194,13 +194,15 @@ const Index = () => {
               Experience award-winning craft beer and fresh pub food in downtown Spearfish
             </p>
           </FadeIn>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 items-stretch">
             {whyVisitReasons.map((r, i) => (
-              <FadeIn key={r.title} delay={i * 0.1}>
-                <div className="text-center p-6 rounded-lg brew-card">
-                  <r.icon className="w-8 h-8 mx-auto mb-4 gold-accent" />
-                  <h3 className="font-bold text-sm md:text-base mb-2">{r.title}</h3>
-                  <p className="text-xs md:text-sm section-muted leading-relaxed">{r.desc}</p>
+              <FadeIn key={r.title} delay={i * 0.1} className="flex">
+                <div className="flex flex-col items-center text-center p-6 rounded-lg brew-card w-full">
+                  <div className="h-12 flex items-center justify-center mb-4">
+                    <r.icon className="w-8 h-8 gold-accent" />
+                  </div>
+                  <h3 className="font-bold text-sm md:text-base mb-2 line-clamp-2 min-h-[2.5rem] flex items-center">{r.title}</h3>
+                  <p className="text-xs md:text-sm section-muted leading-relaxed line-clamp-3">{r.desc}</p>
                 </div>
               </FadeIn>
             ))}
