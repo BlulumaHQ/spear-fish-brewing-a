@@ -34,7 +34,7 @@ const AllBeers = () => {
                   <p className="text-muted-foreground text-sm mb-4 leading-relaxed flex-1">{beer.description}</p>
                   <div className="flex gap-4 text-xs font-semibold text-muted-foreground">
                     <span>{beer.abv}% ABV</span>
-                    <span>{beer.ibu} IBU</span>
+                    
                   </div>
                   {beer.award && (
                     <div className="mt-3 flex items-start gap-1.5 text-xs gold-accent">
