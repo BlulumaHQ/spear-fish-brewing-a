@@ -220,17 +220,23 @@ const PreviewLock = () => {
                     <p className="text-xs font-semibold mb-0.5 mt-1" style={{ color: isHighlight799 ? CTA_COLOR : 'hsl(0 0% 55%)' }}>PREMIUM</p>
                     <p className="text-sm font-bold mb-1" style={{ color: 'hsl(0 0% 95%)' }}>Premium Conversion — $799</p>
                     <p className="text-[11px] mb-3 flex-1" style={{ color: 'hsl(0 0% 65%)' }}>The upgraded version designed to improve conversions and customer engagement.</p>
-                    <a
-                      href={STRIPE_799}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block w-full py-2 rounded text-center text-sm font-bold transition-colors text-black"
-                      style={{ backgroundColor: isHighlight799 ? CTA_COLOR : 'hsl(0 0% 25%)', color: isHighlight799 ? 'black' : 'hsl(0 0% 80%)' }}
-                      onMouseEnter={e => { e.currentTarget.style.backgroundColor = CTA_COLOR; e.currentTarget.style.color = 'black'; }}
-                      onMouseLeave={e => { e.currentTarget.style.backgroundColor = isHighlight799 ? CTA_COLOR : 'hsl(0 0% 25%)'; e.currentTarget.style.color = isHighlight799 ? 'black' : 'hsl(0 0% 80%)'; }}
-                    >
-                      Get Premium Version
-                    </a>
+                    {isVersionB ? (
+                      <a
+                        href={STRIPE_799}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block w-full py-2 rounded text-center text-sm font-bold transition-colors text-black"
+                        style={{ backgroundColor: CTA_COLOR }}
+                        onMouseEnter={e => (e.currentTarget.style.backgroundColor = CTA_HOVER)}
+                        onMouseLeave={e => (e.currentTarget.style.backgroundColor = CTA_COLOR)}
+                      >
+                        Get Premium Version
+                      </a>
+                    ) : (
+                      <span className="block w-full py-2 rounded text-center text-sm font-bold select-none" style={{ backgroundColor: 'hsl(0 0% 20%)', color: 'hsl(0 0% 40%)', cursor: 'default' }}>
+                        Get Premium Version
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
