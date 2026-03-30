@@ -20,11 +20,15 @@ const PreviewLock = () => {
   const isHighlight799 = isVersionB;
   const isOnA = !isVersionB;
 
+  const isHomepage = location.pathname === '/';
+
   useEffect(() => {
     if (timerRef.current) clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(() => setPopupOpen(true), 1000);
+    if (!isHomepage) {
+      timerRef.current = setTimeout(() => setPopupOpen(true), 1000);
+    }
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
-  }, [location.pathname]);
+  }, [location.pathname, isHomepage]);
 
   return (
     <>
@@ -130,17 +134,23 @@ const PreviewLock = () => {
                       <p className="text-xs font-semibold mb-0.5" style={{ color: 'hsl(0 0% 55%)' }}>BASIC</p>
                       <p className="text-sm font-bold mb-1" style={{ color: 'hsl(0 0% 90%)' }}>Launch As-Is — $299</p>
                       <p className="text-[11px] mb-2 flex-1" style={{ color: 'hsl(0 0% 60%)' }}>Get your website exactly as shown in this version. Fastest way to go live.</p>
-                      <a
-                        href={STRIPE_299}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block w-full py-1.5 rounded text-center text-xs font-semibold transition-colors"
-                        style={{ border: `1px solid ${CTA_COLOR}`, color: CTA_COLOR, backgroundColor: 'transparent' }}
-                        onMouseEnter={e => { e.currentTarget.style.backgroundColor = CTA_COLOR; e.currentTarget.style.color = 'black'; }}
-                        onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = CTA_COLOR; }}
-                      >
-                        Launch This Version
-                      </a>
+                      {isOnA ? (
+                        <a
+                          href={STRIPE_299}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block w-full py-1.5 rounded text-center text-xs font-semibold transition-colors"
+                          style={{ border: `1px solid ${CTA_COLOR}`, color: CTA_COLOR, backgroundColor: 'transparent' }}
+                          onMouseEnter={e => { e.currentTarget.style.backgroundColor = CTA_COLOR; e.currentTarget.style.color = 'black'; }}
+                          onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = CTA_COLOR; }}
+                        >
+                          Launch This Version
+                        </a>
+                      ) : (
+                        <span className="block w-full py-1.5 rounded text-center text-xs font-semibold select-none" style={{ border: '1px solid hsl(0 0% 22%)', color: 'hsl(0 0% 40%)', cursor: 'default' }}>
+                          Launch This Version
+                        </span>
+                      )}
                     </div>
 
                     {/* $499 */}
@@ -159,17 +169,23 @@ const PreviewLock = () => {
                       <p className="text-xs font-semibold mb-0.5 mt-1" style={{ color: isHighlight499 ? CTA_COLOR : 'hsl(0 0% 55%)' }}>REVISION</p>
                       <p className="text-sm font-bold mb-1" style={{ color: 'hsl(0 0% 95%)' }}>Launch + 1 Revision — $499</p>
                       <p className="text-[11px] mb-2 flex-1" style={{ color: 'hsl(0 0% 65%)' }}>We refine your website based on your feedback before launch.</p>
-                      <a
-                        href={STRIPE_499}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block w-full py-1.5 rounded text-center text-xs font-bold transition-colors text-black"
-                        style={{ backgroundColor: CTA_COLOR }}
-                        onMouseEnter={e => (e.currentTarget.style.backgroundColor = CTA_HOVER)}
-                        onMouseLeave={e => (e.currentTarget.style.backgroundColor = CTA_COLOR)}
-                      >
-                        Start With Revision
-                      </a>
+                      {isOnA ? (
+                        <a
+                          href={STRIPE_499}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block w-full py-1.5 rounded text-center text-xs font-bold transition-colors text-black"
+                          style={{ backgroundColor: CTA_COLOR }}
+                          onMouseEnter={e => (e.currentTarget.style.backgroundColor = CTA_HOVER)}
+                          onMouseLeave={e => (e.currentTarget.style.backgroundColor = CTA_COLOR)}
+                        >
+                          Start With Revision
+                        </a>
+                      ) : (
+                        <span className="block w-full py-1.5 rounded text-center text-xs font-bold select-none" style={{ backgroundColor: 'hsl(0 0% 20%)', color: 'hsl(0 0% 40%)', cursor: 'default' }}>
+                          Start With Revision
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -204,17 +220,23 @@ const PreviewLock = () => {
                     <p className="text-xs font-semibold mb-0.5 mt-1" style={{ color: isHighlight799 ? CTA_COLOR : 'hsl(0 0% 55%)' }}>PREMIUM</p>
                     <p className="text-sm font-bold mb-1" style={{ color: 'hsl(0 0% 95%)' }}>Premium Conversion — $799</p>
                     <p className="text-[11px] mb-3 flex-1" style={{ color: 'hsl(0 0% 65%)' }}>The upgraded version designed to improve conversions and customer engagement.</p>
-                    <a
-                      href={STRIPE_799}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block w-full py-2 rounded text-center text-sm font-bold transition-colors text-black"
-                      style={{ backgroundColor: isHighlight799 ? CTA_COLOR : 'hsl(0 0% 25%)', color: isHighlight799 ? 'black' : 'hsl(0 0% 80%)' }}
-                      onMouseEnter={e => { e.currentTarget.style.backgroundColor = CTA_COLOR; e.currentTarget.style.color = 'black'; }}
-                      onMouseLeave={e => { e.currentTarget.style.backgroundColor = isHighlight799 ? CTA_COLOR : 'hsl(0 0% 25%)'; e.currentTarget.style.color = isHighlight799 ? 'black' : 'hsl(0 0% 80%)'; }}
-                    >
-                      Get Premium Version
-                    </a>
+                    {isVersionB ? (
+                      <a
+                        href={STRIPE_799}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block w-full py-2 rounded text-center text-sm font-bold transition-colors text-black"
+                        style={{ backgroundColor: CTA_COLOR }}
+                        onMouseEnter={e => (e.currentTarget.style.backgroundColor = CTA_HOVER)}
+                        onMouseLeave={e => (e.currentTarget.style.backgroundColor = CTA_COLOR)}
+                      >
+                        Get Premium Version
+                      </a>
+                    ) : (
+                      <span className="block w-full py-2 rounded text-center text-sm font-bold select-none" style={{ backgroundColor: 'hsl(0 0% 20%)', color: 'hsl(0 0% 40%)', cursor: 'default' }}>
+                        Get Premium Version
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
