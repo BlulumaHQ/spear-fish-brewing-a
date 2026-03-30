@@ -249,7 +249,7 @@ const PreviewLock = () => {
                 {isOnA ? (
                   <span
                     className="block py-2 rounded text-center text-xs font-semibold select-none"
-                    style={{ border: '1px solid hsl(0 0% 18%)', color: 'hsl(0 0% 35%)', backgroundColor: 'hsl(0 0% 12%)', cursor: 'default' }}
+                    style={{ border: '1px solid hsl(0 0% 18%)', color: 'hsl(0 0% 35%)', backgroundColor: 'hsl(0 0% 12%)', cursor: 'default', pointerEvents: 'none' }}
                   >
                     View Version A
                   </span>
