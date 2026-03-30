@@ -5,6 +5,10 @@ import { X } from 'lucide-react';
 const CTA_COLOR = 'hsl(38 65% 52%)';
 const CTA_HOVER = 'hsl(38 65% 45%)';
 
+const STRIPE_299 = 'https://buy.stripe.com/9B63cu2GwaQ56zq8PXfw40o';
+const STRIPE_499 = 'https://buy.stripe.com/eVq00ich66zP8Hy2rzfw40q';
+const STRIPE_799 = 'https://buy.stripe.com/28EaEWch6e2he1Sc29fw40n';
+
 const PreviewLock = () => {
   const [popupOpen, setPopupOpen] = useState(false);
   const location = useLocation();
@@ -14,8 +18,8 @@ const PreviewLock = () => {
   const isVersionB = currentHost.includes('spear-fish-brewing-b');
   const isHighlight499 = !isVersionB;
   const isHighlight799 = isVersionB;
+  const isOnA = !isVersionB;
 
-  // Auto-trigger popup on EVERY page after 1 second
   useEffect(() => {
     if (timerRef.current) clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => setPopupOpen(true), 1000);
@@ -55,14 +59,12 @@ const PreviewLock = () => {
       {/* POPUP + OVERLAY */}
       {popupOpen && (
         <div className="fixed inset-0 flex items-center justify-center" style={{ zIndex: 10000 }}>
-          {/* Dim overlay — NO blur */}
           <div
             className="absolute inset-0"
             style={{ backgroundColor: 'rgba(0,0,0,0.45)' }}
             onClick={() => setPopupOpen(false)}
           />
 
-          {/* Popup card */}
           <div
             className="relative w-[95vw] max-w-2xl mx-auto rounded-xl shadow-2xl overflow-y-auto"
             style={{ backgroundColor: 'hsl(0 0% 10%)', border: '1px solid hsl(0 0% 20%)', color: 'hsl(0 0% 90%)', maxHeight: '90vh' }}
@@ -84,7 +86,7 @@ const PreviewLock = () => {
                   This Website Preview is Ready.
                 </h2>
                 <p className="text-sm mb-1" style={{ color: 'hsl(0 0% 75%)' }}>
-                  Activate your website anytime — everything is already built and ready to go.
+                  You are viewing 2 complete website previews. Choose the version you want to launch.
                 </p>
               </div>
 
@@ -127,9 +129,9 @@ const PreviewLock = () => {
                     <div className="rounded-md p-3 flex flex-col" style={{ backgroundColor: 'hsl(0 0% 14%)', border: '1px solid hsl(0 0% 22%)' }}>
                       <p className="text-xs font-semibold mb-0.5" style={{ color: 'hsl(0 0% 55%)' }}>BASIC</p>
                       <p className="text-sm font-bold mb-1" style={{ color: 'hsl(0 0% 90%)' }}>Launch As-Is — $299</p>
-                      <p className="text-[11px] mb-2 flex-1" style={{ color: 'hsl(0 0% 60%)' }}>Get your website exactly as shown in this preview. Fastest way to go live.</p>
+                      <p className="text-[11px] mb-2 flex-1" style={{ color: 'hsl(0 0% 60%)' }}>Get your website exactly as shown in this version. Fastest way to go live.</p>
                       <a
-                        href="https://spear-fish-brewing-a.lovable.app/"
+                        href={STRIPE_299}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="block w-full py-1.5 rounded text-center text-xs font-semibold transition-colors"
@@ -155,10 +157,10 @@ const PreviewLock = () => {
                         </span>
                       )}
                       <p className="text-xs font-semibold mb-0.5 mt-1" style={{ color: isHighlight499 ? CTA_COLOR : 'hsl(0 0% 55%)' }}>REVISION</p>
-                      <p className="text-sm font-bold mb-1" style={{ color: 'hsl(0 0% 95%)' }}>Launch + 2 Revisions — $499</p>
+                      <p className="text-sm font-bold mb-1" style={{ color: 'hsl(0 0% 95%)' }}>Launch + 1 Revision — $499</p>
                       <p className="text-[11px] mb-2 flex-1" style={{ color: 'hsl(0 0% 65%)' }}>We refine your website based on your feedback before launch.</p>
                       <a
-                        href="https://spear-fish-brewing-a.lovable.app/"
+                        href={STRIPE_499}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="block w-full py-1.5 rounded text-center text-xs font-bold transition-colors text-black"
@@ -203,7 +205,7 @@ const PreviewLock = () => {
                     <p className="text-sm font-bold mb-1" style={{ color: 'hsl(0 0% 95%)' }}>Premium Conversion — $799</p>
                     <p className="text-[11px] mb-3 flex-1" style={{ color: 'hsl(0 0% 65%)' }}>The upgraded version designed to improve conversions and customer engagement.</p>
                     <a
-                      href="https://spear-fish-brewing-b.lovable.app/"
+                      href={STRIPE_799}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="block w-full py-2 rounded text-center text-sm font-bold transition-colors text-black"
@@ -219,28 +221,47 @@ const PreviewLock = () => {
 
               {/* Cross-version navigation */}
               <div className="grid grid-cols-2 gap-3 mb-4">
-                <a
-                  href="https://spear-fish-brewing-a.lovable.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block py-2 rounded text-center text-xs font-semibold transition-colors"
-                  style={{ border: '1px solid hsl(0 0% 30%)', color: 'hsl(0 0% 70%)', backgroundColor: 'transparent' }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = CTA_COLOR; e.currentTarget.style.color = CTA_COLOR; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'hsl(0 0% 30%)'; e.currentTarget.style.color = 'hsl(0 0% 70%)'; }}
-                >
-                  View Version A
-                </a>
-                <a
-                  href="https://spear-fish-brewing-b.lovable.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block py-2 rounded text-center text-xs font-semibold transition-colors"
-                  style={{ border: '1px solid hsl(0 0% 30%)', color: 'hsl(0 0% 70%)', backgroundColor: 'transparent' }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = CTA_COLOR; e.currentTarget.style.color = CTA_COLOR; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'hsl(0 0% 30%)'; e.currentTarget.style.color = 'hsl(0 0% 70%)'; }}
-                >
-                  View Version B
-                </a>
+                {isOnA ? (
+                  <span
+                    className="block py-2 rounded text-center text-xs font-semibold select-none"
+                    style={{ border: '1px solid hsl(0 0% 18%)', color: 'hsl(0 0% 35%)', backgroundColor: 'hsl(0 0% 12%)', cursor: 'default' }}
+                  >
+                    View Version A
+                  </span>
+                ) : (
+                  <a
+                    href="https://spear-fish-brewing-a.lovable.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block py-2 rounded text-center text-xs font-semibold transition-colors"
+                    style={{ border: '1px solid hsl(0 0% 30%)', color: 'hsl(0 0% 70%)', backgroundColor: 'transparent' }}
+                    onMouseEnter={e => { e.currentTarget.style.borderColor = CTA_COLOR; e.currentTarget.style.color = CTA_COLOR; }}
+                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'hsl(0 0% 30%)'; e.currentTarget.style.color = 'hsl(0 0% 70%)'; }}
+                  >
+                    View Version A
+                  </a>
+                )}
+
+                {isVersionB ? (
+                  <span
+                    className="block py-2 rounded text-center text-xs font-semibold select-none"
+                    style={{ border: '1px solid hsl(0 0% 18%)', color: 'hsl(0 0% 35%)', backgroundColor: 'hsl(0 0% 12%)', cursor: 'default' }}
+                  >
+                    View Version B
+                  </span>
+                ) : (
+                  <a
+                    href="https://spear-fish-brewing-b.lovable.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block py-2 rounded text-center text-xs font-semibold transition-colors"
+                    style={{ border: '1px solid hsl(0 0% 30%)', color: 'hsl(0 0% 70%)', backgroundColor: 'transparent' }}
+                    onMouseEnter={e => { e.currentTarget.style.borderColor = CTA_COLOR; e.currentTarget.style.color = CTA_COLOR; }}
+                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'hsl(0 0% 30%)'; e.currentTarget.style.color = 'hsl(0 0% 70%)'; }}
+                  >
+                    View Version B
+                  </a>
+                )}
               </div>
 
               <p className="text-center text-[11px]" style={{ color: 'hsl(0 0% 45%)' }}>
