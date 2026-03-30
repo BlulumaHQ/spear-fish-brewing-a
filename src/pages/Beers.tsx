@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { Trophy, Beer } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
@@ -53,20 +52,34 @@ const Beers = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {beers.map((beer, i) => (
               <FadeIn key={beer.name} delay={i * 0.05}>
-                <div className="bg-background rounded-lg p-6 h-full flex flex-col border border-border hover:shadow-lg transition-shadow">
-                  <div className="text-xs font-bold uppercase tracking-[0.15em] gold-accent mb-2">{beer.style}</div>
-                  <h3 className="text-xl font-bold mb-2">{beer.name}</h3>
-                  <p className="text-muted-foreground text-sm mb-4 leading-relaxed flex-1">{beer.description}</p>
-                  <div className="flex gap-4 text-xs font-semibold text-muted-foreground">
-                    <span>{beer.abv}% ABV</span>
-                    <span>{beer.ibu} IBU</span>
-                  </div>
-                  {beer.award && (
-                    <div className="mt-3 flex items-start gap-1.5 text-xs gold-accent">
-                      <Trophy size={12} className="mt-0.5 flex-shrink-0" />
-                      <span>{beer.award}</span>
+                <div className="bg-background rounded-lg overflow-hidden h-full flex flex-col border border-border hover:shadow-lg transition-shadow">
+                  {beer.image && (
+                    <div className="aspect-[4/3] overflow-hidden bg-muted">
+                      <img
+                        src={beer.image}
+                        alt={beer.name}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
                     </div>
                   )}
+                  <div className="p-6 flex flex-col flex-1">
+                    <div className="text-xs font-bold uppercase tracking-[0.15em] gold-accent mb-2">{beer.style}</div>
+                    <h3 className="text-xl font-bold mb-2">{beer.name}</h3>
+                    <p className="text-muted-foreground text-sm mb-4 leading-relaxed flex-1">{beer.description}</p>
+                    <div className="flex gap-4 text-xs font-semibold text-muted-foreground">
+                      <span>{beer.abv}% ABV</span>
+                    </div>
+                    {beer.note && (
+                      <div className="mt-2 text-xs text-muted-foreground italic">{beer.note}</div>
+                    )}
+                    {beer.award && (
+                      <div className="mt-3 flex items-start gap-1.5 text-xs gold-accent">
+                        <Trophy size={12} className="mt-0.5 flex-shrink-0" />
+                        <span>{beer.award}</span>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </FadeIn>
             ))}
@@ -92,7 +105,7 @@ const Beers = () => {
               <div>
                 <h2 className="text-2xl md:text-3xl font-bold mb-4">Our Brewing Process</h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  Our brewery features South Dakota's first horizontal lagering tanks and a three-stage reverse osmosis water filtration system that allow us to create clean award-winning lagers.
+                  Our brewery features South Dakota's first horizontal lagering tanks and a three-stage reverse osmosis water filtration system that allow us to create clean award-winning lagers like the Copper Midge Amber Lager, the Aggressive Goat Bock Lager, and Nathan's favorite beer, the Venner Beer Premium Light Lager.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
                   In addition to the lagers that we are known for, we also have a selection of ale styles. From the refreshing and clean Termes Beer American Wheat, to the dark roasted Thoen Stone Stout, or even our unique gold medal winning Bobcat Logic Kettle Sour, there is something for every beer drinker to enjoy.
