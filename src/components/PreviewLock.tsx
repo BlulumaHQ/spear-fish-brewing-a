@@ -102,90 +102,133 @@ const PreviewLock = () => {
               <X size={20} />
             </button>
 
-            <div className="px-6 py-8 sm:px-8 sm:py-10 text-center">
+            <div className="px-5 py-6 sm:px-8 sm:py-8">
               {/* Headline */}
-              <h2 className="text-xl sm:text-2xl font-bold mb-2" style={{ color: CTA_COLOR }}>
-                This Website Preview is Ready.
-              </h2>
-              <p className="text-sm sm:text-base mb-1" style={{ color: 'hsl(0 0% 75%)' }}>
-                Activate your website anytime — everything is already built and ready to go.
-              </p>
-              <p className="text-xs mb-6" style={{ color: 'hsl(0 0% 55%)' }}>
-                You've already seen the result. Everything is ready.
-              </p>
-
-              {/* Process steps — horizontal */}
-              <div className="flex items-center justify-center gap-2 sm:gap-4 mb-8 text-xs sm:text-sm font-medium" style={{ color: 'hsl(0 0% 70%)' }}>
-                <div className="flex flex-col items-center gap-1">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center text-black font-bold" style={{ backgroundColor: CTA_COLOR }}>1</div>
-                  <span className="text-center max-w-[80px]">Payment Confirmed</span>
-                </div>
-                <div className="w-6 sm:w-10 h-px" style={{ backgroundColor: 'hsl(0 0% 30%)' }} />
-                <div className="flex flex-col items-center gap-1">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center text-black font-bold" style={{ backgroundColor: CTA_COLOR }}>2</div>
-                  <span className="text-center max-w-[80px]">Submit Your Revisions</span>
-                </div>
-                <div className="w-6 sm:w-10 h-px" style={{ backgroundColor: 'hsl(0 0% 30%)' }} />
-                <div className="flex flex-col items-center gap-1">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center text-black font-bold" style={{ backgroundColor: CTA_COLOR }}>3</div>
-                  <span className="text-center max-w-[80px]">Launch Your Website</span>
-                </div>
+              <div className="text-center mb-2">
+                <h2 className="text-xl sm:text-2xl font-bold mb-1" style={{ color: CTA_COLOR }}>
+                  This Website Preview is Ready.
+                </h2>
+                <p className="text-sm mb-1" style={{ color: 'hsl(0 0% 75%)' }}>
+                  Activate your website anytime — everything is already built and ready to go.
+                </p>
               </div>
 
-              {/* CTA buttons — Preview A */}
-              <div className="flex flex-col gap-3 mb-6">
-                <button
-                  className="w-full py-3 rounded-lg font-bold text-base text-black transition-colors cursor-pointer"
-                  style={{ backgroundColor: CTA_COLOR }}
-                  onMouseEnter={e => (e.currentTarget.style.backgroundColor = CTA_HOVER)}
-                  onMouseLeave={e => (e.currentTarget.style.backgroundColor = CTA_COLOR)}
-                >
-                  Activate with Revisions – $499
-                </button>
-                <button
-                  className="w-full py-3 rounded-lg font-bold text-base transition-colors cursor-pointer"
+              {/* Process steps */}
+              <div className="flex items-center justify-center gap-2 sm:gap-3 mb-5 text-[11px] sm:text-xs font-medium" style={{ color: 'hsl(0 0% 70%)' }}>
+                {['Payment Confirmed', 'Submit Your Revisions', 'Launch Your Website'].map((step, i) => (
+                  <div key={i} className="flex items-center gap-2 sm:gap-3">
+                    {i > 0 && <div className="w-4 sm:w-8 h-px" style={{ backgroundColor: 'hsl(0 0% 30%)' }} />}
+                    <div className="flex flex-col items-center gap-1">
+                      <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-black text-xs font-bold" style={{ backgroundColor: CTA_COLOR }}>{i + 1}</div>
+                      <span className="text-center max-w-[70px] leading-tight">{step}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Section title */}
+              <p className="text-center text-sm font-semibold mb-3" style={{ color: 'hsl(0 0% 80%)' }}>
+                Choose How You Want to Launch
+              </p>
+
+              {/* 3 Pricing Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+                {/* $299 Basic */}
+                <div
+                  className="rounded-lg p-4 flex flex-col text-center"
                   style={{
-                    backgroundColor: 'transparent',
-                    border: `1px solid ${CTA_COLOR}`,
-                    color: CTA_COLOR,
-                  }}
-                  onMouseEnter={e => {
-                    e.currentTarget.style.backgroundColor = CTA_COLOR;
-                    e.currentTarget.style.color = 'black';
-                  }}
-                  onMouseLeave={e => {
-                    e.currentTarget.style.backgroundColor = 'transparent';
-                    e.currentTarget.style.color = CTA_COLOR;
+                    backgroundColor: 'hsl(0 0% 13%)',
+                    border: '1px solid hsl(0 0% 22%)',
                   }}
                 >
-                  Or launch as-is – $299
-                </button>
+                  <p className="text-xs font-semibold mb-1" style={{ color: 'hsl(0 0% 55%)' }}>BASIC</p>
+                  <p className="text-lg font-bold mb-1" style={{ color: 'hsl(0 0% 90%)' }}>Launch As-Is — $299</p>
+                  <p className="text-xs mb-3 flex-1" style={{ color: 'hsl(0 0% 60%)' }}>
+                    Get your website exactly as shown in the preview. Fastest way to go live.
+                  </p>
+                  <button
+                    className="w-full py-2 rounded-md text-sm font-semibold transition-colors cursor-pointer"
+                    style={{ border: `1px solid ${CTA_COLOR}`, color: CTA_COLOR, backgroundColor: 'transparent' }}
+                    onMouseEnter={e => { e.currentTarget.style.backgroundColor = CTA_COLOR; e.currentTarget.style.color = 'black'; }}
+                    onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = CTA_COLOR; }}
+                  >
+                    Launch This Version
+                  </button>
+                </div>
+
+                {/* $499 Most Popular — highlighted on Version A */}
+                <div
+                  className="rounded-lg p-4 flex flex-col text-center relative"
+                  style={{
+                    backgroundColor: isHighlight499 ? 'hsl(38 30% 12%)' : 'hsl(0 0% 13%)',
+                    border: isHighlight499 ? `2px solid ${CTA_COLOR}` : '1px solid hsl(0 0% 22%)',
+                    transform: isHighlight499 ? 'scale(1.03)' : 'none',
+                    boxShadow: isHighlight499 ? `0 0 20px hsl(38 65% 52% / 0.25)` : 'none',
+                  }}
+                >
+                  {isHighlight499 && (
+                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] font-bold px-3 py-0.5 rounded-full text-black" style={{ backgroundColor: CTA_COLOR }}>
+                      ⭐ Most Popular
+                    </span>
+                  )}
+                  <p className="text-xs font-semibold mb-1 mt-1" style={{ color: isHighlight499 ? CTA_COLOR : 'hsl(0 0% 55%)' }}>REVISION</p>
+                  <p className="text-lg font-bold mb-1" style={{ color: 'hsl(0 0% 95%)' }}>Launch + 1 Revision — $499</p>
+                  <p className="text-xs mb-3 flex-1" style={{ color: 'hsl(0 0% 65%)' }}>
+                    We refine your website based on your feedback before launch.
+                  </p>
+                  <button
+                    className="w-full py-2 rounded-md text-sm font-bold transition-colors cursor-pointer text-black"
+                    style={{ backgroundColor: CTA_COLOR }}
+                    onMouseEnter={e => (e.currentTarget.style.backgroundColor = CTA_HOVER)}
+                    onMouseLeave={e => (e.currentTarget.style.backgroundColor = CTA_COLOR)}
+                  >
+                    Start With Revision
+                  </button>
+                </div>
+
+                {/* $799 Premium — highlighted on Version B */}
+                <div
+                  className="rounded-lg p-4 flex flex-col text-center relative"
+                  style={{
+                    backgroundColor: isHighlight799 ? 'hsl(38 30% 12%)' : 'hsl(0 0% 13%)',
+                    border: isHighlight799 ? `2px solid ${CTA_COLOR}` : '1px solid hsl(0 0% 22%)',
+                    transform: isHighlight799 ? 'scale(1.03)' : 'none',
+                    boxShadow: isHighlight799 ? `0 0 20px hsl(38 65% 52% / 0.25)` : 'none',
+                  }}
+                >
+                  {isHighlight799 && (
+                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] font-bold px-3 py-0.5 rounded-full text-black" style={{ backgroundColor: CTA_COLOR }}>
+                      🏆 Premium
+                    </span>
+                  )}
+                  <p className="text-xs font-semibold mb-1 mt-1" style={{ color: isHighlight799 ? CTA_COLOR : 'hsl(0 0% 55%)' }}>PREMIUM</p>
+                  <p className="text-lg font-bold mb-1" style={{ color: 'hsl(0 0% 95%)' }}>Premium Conversion — $799</p>
+                  <p className="text-xs mb-3 flex-1" style={{ color: 'hsl(0 0% 65%)' }}>
+                    The upgraded version designed to improve conversions and customer engagement.
+                  </p>
+                  <button
+                    className="w-full py-2 rounded-md text-sm font-bold transition-colors cursor-pointer text-black"
+                    style={{ backgroundColor: isHighlight799 ? CTA_COLOR : 'hsl(0 0% 25%)', color: isHighlight799 ? 'black' : 'hsl(0 0% 80%)' }}
+                    onMouseEnter={e => { e.currentTarget.style.backgroundColor = CTA_COLOR; e.currentTarget.style.color = 'black'; }}
+                    onMouseLeave={e => { e.currentTarget.style.backgroundColor = isHighlight799 ? CTA_COLOR : 'hsl(0 0% 25%)'; e.currentTarget.style.color = isHighlight799 ? 'black' : 'hsl(0 0% 80%)'; }}
+                  >
+                    Get Premium Version
+                  </button>
+                </div>
               </div>
 
-              {/* A/B Navigation — opens in new tabs */}
-              <div className="flex items-center justify-center gap-4 mb-5">
-                <a
-                  href="https://spear-fish-brewing-a.lovable.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm font-semibold underline underline-offset-2 transition-colors"
-                  style={{ color: CTA_COLOR }}
-                >
+              {/* A/B Navigation */}
+              <div className="flex items-center justify-center gap-4 mb-3">
+                <a href="https://spear-fish-brewing-a.lovable.app/" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold underline underline-offset-2" style={{ color: CTA_COLOR }}>
                   View Version A
                 </a>
-                <a
-                  href="https://spear-fish-brewing-b.lovable.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm font-semibold underline underline-offset-2 transition-colors"
-                  style={{ color: CTA_COLOR }}
-                >
+                <a href="https://spear-fish-brewing-b.lovable.app/" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold underline underline-offset-2" style={{ color: CTA_COLOR }}>
                   View Version B
                 </a>
               </div>
 
-              {/* Stripe text */}
-              <p className="text-[11px]" style={{ color: 'hsl(0 0% 45%)' }}>
+              {/* Stripe */}
+              <p className="text-center text-[11px]" style={{ color: 'hsl(0 0% 45%)' }}>
                 Secure checkout powered by Stripe
               </p>
             </div>
