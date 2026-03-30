@@ -169,17 +169,23 @@ const PreviewLock = () => {
                       <p className="text-xs font-semibold mb-0.5 mt-1" style={{ color: isHighlight499 ? CTA_COLOR : 'hsl(0 0% 55%)' }}>REVISION</p>
                       <p className="text-sm font-bold mb-1" style={{ color: 'hsl(0 0% 95%)' }}>Launch + 1 Revision — $499</p>
                       <p className="text-[11px] mb-2 flex-1" style={{ color: 'hsl(0 0% 65%)' }}>We refine your website based on your feedback before launch.</p>
-                      <a
-                        href={STRIPE_499}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block w-full py-1.5 rounded text-center text-xs font-bold transition-colors text-black"
-                        style={{ backgroundColor: CTA_COLOR }}
-                        onMouseEnter={e => (e.currentTarget.style.backgroundColor = CTA_HOVER)}
-                        onMouseLeave={e => (e.currentTarget.style.backgroundColor = CTA_COLOR)}
-                      >
-                        Start With Revision
-                      </a>
+                      {isOnA ? (
+                        <a
+                          href={STRIPE_499}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block w-full py-1.5 rounded text-center text-xs font-bold transition-colors text-black"
+                          style={{ backgroundColor: CTA_COLOR }}
+                          onMouseEnter={e => (e.currentTarget.style.backgroundColor = CTA_HOVER)}
+                          onMouseLeave={e => (e.currentTarget.style.backgroundColor = CTA_COLOR)}
+                        >
+                          Start With Revision
+                        </a>
+                      ) : (
+                        <span className="block w-full py-1.5 rounded text-center text-xs font-bold select-none" style={{ backgroundColor: 'hsl(0 0% 20%)', color: 'hsl(0 0% 40%)', cursor: 'default' }}>
+                          Start With Revision
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>
