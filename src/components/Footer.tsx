@@ -33,12 +33,19 @@ const Footer = () => {
                 { label: 'Home', path: '/' },
                 { label: 'Beers', path: '/beers' },
                 { label: 'Food Menu', path: '/menu' },
+                { label: 'Shop', path: 'https://spearfish-brewing.square.site/', external: true },
                 { label: 'Contact', path: '/contact-us' },
               ].map(item => (
                 <li key={item.path}>
-                  <Link to={item.path} className="section-muted text-sm hover:opacity-80 transition-opacity">
-                    {item.label}
-                  </Link>
+                  {item.external ? (
+                    <a href={item.path} target="_blank" rel="noopener noreferrer" className="section-muted text-sm hover:opacity-80 transition-opacity">
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link to={item.path} className="section-muted text-sm hover:opacity-80 transition-opacity">
+                      {item.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

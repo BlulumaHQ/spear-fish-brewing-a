@@ -7,6 +7,7 @@ const navItems = [
   { label: 'Home', path: '/' },
   { label: 'Beer', path: '/beers' },
   { label: 'Food', path: '/menu' },
+  { label: 'Shop', path: 'https://spearfish-brewing.square.site/', external: true },
   { label: 'Contact Us', path: '/contact-us' },
 ];
 
@@ -40,17 +41,29 @@ const Header = () => {
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
-          {navItems.map(item => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`text-xs font-bold uppercase tracking-[0.2em] transition-opacity text-brew-dark-fg ${
-                location.pathname === item.path ? 'opacity-60' : 'hover:opacity-70'
-              }`}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navItems.map(item =>
+            item.external ? (
+              <a
+                key={item.path}
+                href={item.path}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-bold uppercase tracking-[0.2em] transition-opacity text-brew-dark-fg hover:opacity-70"
+              >
+                {item.label}
+              </a>
+            ) : (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`text-xs font-bold uppercase tracking-[0.2em] transition-opacity text-brew-dark-fg ${
+                  location.pathname === item.path ? 'opacity-60' : 'hover:opacity-70'
+                }`}
+              >
+                {item.label}
+              </Link>
+            )
+          )}
         </nav>
 
         <button
@@ -72,18 +85,31 @@ const Header = () => {
             style={{ backgroundColor: 'hsl(var(--brew-dark) / 0.97)' }}
           >
             <nav className="flex flex-col py-4 px-5 gap-1">
-              {navItems.map(item => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => setMobileOpen(false)}
-                  className={`py-3 text-sm font-bold uppercase tracking-[0.15em] text-brew-dark-fg transition-opacity ${
-                    location.pathname === item.path ? 'opacity-60' : 'hover:opacity-70'
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {navItems.map(item =>
+                item.external ? (
+                  <a
+                    key={item.path}
+                    href={item.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setMobileOpen(false)}
+                    className="py-3 text-sm font-bold uppercase tracking-[0.15em] text-brew-dark-fg transition-opacity hover:opacity-70"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    onClick={() => setMobileOpen(false)}
+                    className={`py-3 text-sm font-bold uppercase tracking-[0.15em] text-brew-dark-fg transition-opacity ${
+                      location.pathname === item.path ? 'opacity-60' : 'hover:opacity-70'
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                )
+              )}
             </nav>
           </motion.div>
         )}
