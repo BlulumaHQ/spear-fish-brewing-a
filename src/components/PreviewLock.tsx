@@ -132,104 +132,118 @@ const PreviewLock = () => {
               </div>
 
               {/* Section title */}
-              <p className="text-center text-sm font-semibold mb-3" style={{ color: 'hsl(0 0% 80%)' }}>
-                Choose How You Want to Launch
+              <p className="text-center text-sm font-semibold mb-4" style={{ color: 'hsl(0 0% 80%)' }}>
+                Choose Your Website Version
               </p>
 
-              {/* 3 Pricing Cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
-                {/* $299 Basic */}
+              {/* Two grouped columns */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+                {/* GROUP A */}
                 <div
-                  className="rounded-lg p-4 flex flex-col text-center"
+                  className="rounded-lg p-3 sm:p-4 flex flex-col"
                   style={{
-                    backgroundColor: 'hsl(0 0% 13%)',
-                    border: '1px solid hsl(0 0% 22%)',
+                    backgroundColor: isHighlight499 ? 'hsl(38 10% 11%)' : 'hsl(0 0% 12%)',
+                    border: isHighlight499 ? `2px solid ${CTA_COLOR}` : '1px solid hsl(0 0% 20%)',
+                    boxShadow: isHighlight499 ? '0 0 20px hsl(38 65% 52% / 0.15)' : 'none',
                   }}
                 >
-                  <p className="text-xs font-semibold mb-1" style={{ color: 'hsl(0 0% 55%)' }}>BASIC</p>
-                  <p className="text-lg font-bold mb-1" style={{ color: 'hsl(0 0% 90%)' }}>Launch As-Is — $299</p>
-                  <p className="text-xs mb-3 flex-1" style={{ color: 'hsl(0 0% 60%)' }}>
-                    Get your website exactly as shown in the preview. Fastest way to go live.
-                  </p>
-                  <button
-                    className="w-full py-2 rounded-md text-sm font-semibold transition-colors cursor-pointer"
-                    style={{ border: `1px solid ${CTA_COLOR}`, color: CTA_COLOR, backgroundColor: 'transparent' }}
-                    onMouseEnter={e => { e.currentTarget.style.backgroundColor = CTA_COLOR; e.currentTarget.style.color = 'black'; }}
-                    onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = CTA_COLOR; }}
-                  >
-                    Launch This Version
-                  </button>
+                  <div className="text-center mb-3">
+                    <p className="text-sm font-bold" style={{ color: isHighlight499 ? CTA_COLOR : 'hsl(0 0% 80%)' }}>Preview A</p>
+                    <p className="text-[11px]" style={{ color: 'hsl(0 0% 55%)' }}>Clean, functional version</p>
+                  </div>
+
+                  <div className="flex flex-col gap-2 flex-1">
+                    {/* $299 */}
+                    <div className="rounded-md p-3 flex flex-col" style={{ backgroundColor: 'hsl(0 0% 14%)', border: '1px solid hsl(0 0% 22%)' }}>
+                      <p className="text-xs font-semibold mb-0.5" style={{ color: 'hsl(0 0% 55%)' }}>BASIC</p>
+                      <p className="text-sm font-bold mb-1" style={{ color: 'hsl(0 0% 90%)' }}>Launch As-Is — $299</p>
+                      <p className="text-[11px] mb-2 flex-1" style={{ color: 'hsl(0 0% 60%)' }}>Launch exactly as shown in this version.</p>
+                      <a
+                        href="https://spear-fish-brewing-a.lovable.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block w-full py-1.5 rounded text-center text-xs font-semibold transition-colors"
+                        style={{ border: `1px solid ${CTA_COLOR}`, color: CTA_COLOR, backgroundColor: 'transparent' }}
+                        onMouseEnter={e => { e.currentTarget.style.backgroundColor = CTA_COLOR; e.currentTarget.style.color = 'black'; }}
+                        onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = CTA_COLOR; }}
+                      >
+                        Launch This Version
+                      </a>
+                    </div>
+
+                    {/* $499 highlighted */}
+                    <div
+                      className="rounded-md p-3 flex flex-col relative"
+                      style={{
+                        backgroundColor: isHighlight499 ? 'hsl(38 20% 13%)' : 'hsl(0 0% 14%)',
+                        border: isHighlight499 ? `1.5px solid ${CTA_COLOR}` : '1px solid hsl(0 0% 22%)',
+                      }}
+                    >
+                      {isHighlight499 && (
+                        <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 text-[9px] font-bold px-2 py-0.5 rounded-full text-black whitespace-nowrap" style={{ backgroundColor: CTA_COLOR }}>
+                          ⭐ Most Popular
+                        </span>
+                      )}
+                      <p className="text-xs font-semibold mb-0.5 mt-1" style={{ color: isHighlight499 ? CTA_COLOR : 'hsl(0 0% 55%)' }}>REVISION</p>
+                      <p className="text-sm font-bold mb-1" style={{ color: 'hsl(0 0% 95%)' }}>Launch + 1 Revision — $499</p>
+                      <p className="text-[11px] mb-2 flex-1" style={{ color: 'hsl(0 0% 65%)' }}>We refine this version based on your feedback before launch.</p>
+                      <a
+                        href="https://spear-fish-brewing-a.lovable.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block w-full py-1.5 rounded text-center text-xs font-bold transition-colors text-black"
+                        style={{ backgroundColor: CTA_COLOR }}
+                        onMouseEnter={e => (e.currentTarget.style.backgroundColor = CTA_HOVER)}
+                        onMouseLeave={e => (e.currentTarget.style.backgroundColor = CTA_COLOR)}
+                      >
+                        Start With Revision
+                      </a>
+                    </div>
+                  </div>
                 </div>
 
-                {/* $499 Most Popular — highlighted on Version A */}
+                {/* GROUP B */}
                 <div
-                  className="rounded-lg p-4 flex flex-col text-center relative"
+                  className="rounded-lg p-3 sm:p-4 flex flex-col"
                   style={{
-                    backgroundColor: isHighlight499 ? 'hsl(38 30% 12%)' : 'hsl(0 0% 13%)',
-                    border: isHighlight499 ? `2px solid ${CTA_COLOR}` : '1px solid hsl(0 0% 22%)',
-                    transform: isHighlight499 ? 'scale(1.03)' : 'none',
-                    boxShadow: isHighlight499 ? `0 0 20px hsl(38 65% 52% / 0.25)` : 'none',
+                    backgroundColor: isHighlight799 ? 'hsl(38 10% 11%)' : 'hsl(0 0% 12%)',
+                    border: isHighlight799 ? `2px solid ${CTA_COLOR}` : '1px solid hsl(0 0% 20%)',
+                    boxShadow: isHighlight799 ? '0 0 20px hsl(38 65% 52% / 0.15)' : 'none',
                   }}
                 >
-                  {isHighlight499 && (
-                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] font-bold px-3 py-0.5 rounded-full text-black" style={{ backgroundColor: CTA_COLOR }}>
-                      ⭐ Most Popular
-                    </span>
-                  )}
-                  <p className="text-xs font-semibold mb-1 mt-1" style={{ color: isHighlight499 ? CTA_COLOR : 'hsl(0 0% 55%)' }}>REVISION</p>
-                  <p className="text-lg font-bold mb-1" style={{ color: 'hsl(0 0% 95%)' }}>Launch + 1 Revision — $499</p>
-                  <p className="text-xs mb-3 flex-1" style={{ color: 'hsl(0 0% 65%)' }}>
-                    We refine your website based on your feedback before launch.
-                  </p>
-                  <button
-                    className="w-full py-2 rounded-md text-sm font-bold transition-colors cursor-pointer text-black"
-                    style={{ backgroundColor: CTA_COLOR }}
-                    onMouseEnter={e => (e.currentTarget.style.backgroundColor = CTA_HOVER)}
-                    onMouseLeave={e => (e.currentTarget.style.backgroundColor = CTA_COLOR)}
-                  >
-                    Start With Revision
-                  </button>
-                </div>
+                  <div className="text-center mb-3">
+                    <p className="text-sm font-bold" style={{ color: isHighlight799 ? CTA_COLOR : 'hsl(0 0% 80%)' }}>Preview B</p>
+                    <p className="text-[11px]" style={{ color: 'hsl(0 0% 55%)' }}>Premium conversion version</p>
+                  </div>
 
-                {/* $799 Premium — highlighted on Version B */}
-                <div
-                  className="rounded-lg p-4 flex flex-col text-center relative"
-                  style={{
-                    backgroundColor: isHighlight799 ? 'hsl(38 30% 12%)' : 'hsl(0 0% 13%)',
-                    border: isHighlight799 ? `2px solid ${CTA_COLOR}` : '1px solid hsl(0 0% 22%)',
-                    transform: isHighlight799 ? 'scale(1.03)' : 'none',
-                    boxShadow: isHighlight799 ? `0 0 20px hsl(38 65% 52% / 0.25)` : 'none',
-                  }}
-                >
-                  {isHighlight799 && (
-                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] font-bold px-3 py-0.5 rounded-full text-black" style={{ backgroundColor: CTA_COLOR }}>
-                      🏆 Premium
-                    </span>
-                  )}
-                  <p className="text-xs font-semibold mb-1 mt-1" style={{ color: isHighlight799 ? CTA_COLOR : 'hsl(0 0% 55%)' }}>PREMIUM</p>
-                  <p className="text-lg font-bold mb-1" style={{ color: 'hsl(0 0% 95%)' }}>Premium Conversion — $799</p>
-                  <p className="text-xs mb-3 flex-1" style={{ color: 'hsl(0 0% 65%)' }}>
-                    The upgraded version designed to improve conversions and customer engagement.
-                  </p>
-                  <button
-                    className="w-full py-2 rounded-md text-sm font-bold transition-colors cursor-pointer text-black"
-                    style={{ backgroundColor: isHighlight799 ? CTA_COLOR : 'hsl(0 0% 25%)', color: isHighlight799 ? 'black' : 'hsl(0 0% 80%)' }}
-                    onMouseEnter={e => { e.currentTarget.style.backgroundColor = CTA_COLOR; e.currentTarget.style.color = 'black'; }}
-                    onMouseLeave={e => { e.currentTarget.style.backgroundColor = isHighlight799 ? CTA_COLOR : 'hsl(0 0% 25%)'; e.currentTarget.style.color = isHighlight799 ? 'black' : 'hsl(0 0% 80%)'; }}
+                  <div
+                    className="rounded-md p-3 sm:p-4 flex flex-col flex-1 relative"
+                    style={{
+                      backgroundColor: isHighlight799 ? 'hsl(38 20% 13%)' : 'hsl(0 0% 14%)',
+                      border: isHighlight799 ? `1.5px solid ${CTA_COLOR}` : '1px solid hsl(0 0% 22%)',
+                    }}
                   >
-                    Get Premium Version
-                  </button>
+                    {isHighlight799 && (
+                      <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 text-[9px] font-bold px-2 py-0.5 rounded-full text-black whitespace-nowrap" style={{ backgroundColor: CTA_COLOR }}>
+                        👑 Premium
+                      </span>
+                    )}
+                    <p className="text-xs font-semibold mb-0.5 mt-1" style={{ color: isHighlight799 ? CTA_COLOR : 'hsl(0 0% 55%)' }}>PREMIUM</p>
+                    <p className="text-sm font-bold mb-1" style={{ color: 'hsl(0 0% 95%)' }}>Premium Conversion — $799</p>
+                    <p className="text-[11px] mb-3 flex-1" style={{ color: 'hsl(0 0% 65%)' }}>Designed to improve conversions and customer engagement.</p>
+                    <a
+                      href="https://spear-fish-brewing-b.lovable.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full py-2 rounded text-center text-sm font-bold transition-colors text-black"
+                      style={{ backgroundColor: isHighlight799 ? CTA_COLOR : 'hsl(0 0% 25%)', color: isHighlight799 ? 'black' : 'hsl(0 0% 80%)' }}
+                      onMouseEnter={e => { e.currentTarget.style.backgroundColor = CTA_COLOR; e.currentTarget.style.color = 'black'; }}
+                      onMouseLeave={e => { e.currentTarget.style.backgroundColor = isHighlight799 ? CTA_COLOR : 'hsl(0 0% 25%)'; e.currentTarget.style.color = isHighlight799 ? 'black' : 'hsl(0 0% 80%)'; }}
+                    >
+                      Get Premium Version
+                    </a>
+                  </div>
                 </div>
-              </div>
-
-              {/* A/B Navigation */}
-              <div className="flex items-center justify-center gap-4 mb-3">
-                <a href="https://spear-fish-brewing-a.lovable.app/" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold underline underline-offset-2" style={{ color: CTA_COLOR }}>
-                  View Version A
-                </a>
-                <a href="https://spear-fish-brewing-b.lovable.app/" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold underline underline-offset-2" style={{ color: CTA_COLOR }}>
-                  View Version B
-                </a>
               </div>
 
               {/* Stripe */}
