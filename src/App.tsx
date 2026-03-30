@@ -27,6 +27,7 @@ const App = () => (
       <BrowserRouter>
         <ScrollToTop />
         <ScrollToTopButton />
+        <PreviewLock />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/beers" element={<Beers />} />
