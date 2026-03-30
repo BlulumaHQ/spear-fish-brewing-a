@@ -24,9 +24,12 @@ const PreviewLock = () => {
 
   useEffect(() => {
     if (timerRef.current) clearTimeout(timerRef.current);
-    if (!isHomepage) {
-      timerRef.current = setTimeout(() => setPopupOpen(true), 1000);
+    if (isHomepage) {
+      // HARD LOCK: Never auto-open on homepage
+      return;
     }
+    // Internal pages only: auto-open after 1 second
+    timerRef.current = setTimeout(() => setPopupOpen(true), 1000);
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, [location.pathname, isHomepage]);
 
