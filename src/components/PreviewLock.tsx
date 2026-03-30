@@ -236,7 +236,7 @@ const PreviewLock = () => {
                         Get Premium Version
                       </a>
                     ) : (
-                      <span className="block w-full py-2 rounded text-center text-sm font-bold select-none" style={{ backgroundColor: 'hsl(0 0% 20%)', color: 'hsl(0 0% 40%)', cursor: 'default' }}>
+                      <span className="block w-full py-2 rounded text-center text-sm font-bold select-none" style={{ backgroundColor: 'hsl(0 0% 20%)', color: 'hsl(0 0% 40%)', cursor: 'default', pointerEvents: 'none' }}>
                         Get Premium Version
                       </span>
                     )}
