@@ -20,11 +20,15 @@ const PreviewLock = () => {
   const isHighlight799 = isVersionB;
   const isOnA = !isVersionB;
 
+  const isHomepage = location.pathname === '/';
+
   useEffect(() => {
     if (timerRef.current) clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(() => setPopupOpen(true), 1000);
+    if (!isHomepage) {
+      timerRef.current = setTimeout(() => setPopupOpen(true), 1000);
+    }
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
-  }, [location.pathname]);
+  }, [location.pathname, isHomepage]);
 
   return (
     <>
