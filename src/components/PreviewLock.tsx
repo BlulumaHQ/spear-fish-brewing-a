@@ -24,9 +24,12 @@ const PreviewLock = () => {
 
   useEffect(() => {
     if (timerRef.current) clearTimeout(timerRef.current);
-    if (!isHomepage) {
-      timerRef.current = setTimeout(() => setPopupOpen(true), 1000);
+    if (isHomepage) {
+      // HARD LOCK: Never auto-open on homepage
+      return;
     }
+    // Internal pages only: auto-open after 1 second
+    timerRef.current = setTimeout(() => setPopupOpen(true), 1000);
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, [location.pathname, isHomepage]);
 
@@ -147,7 +150,7 @@ const PreviewLock = () => {
                           Launch This Version
                         </a>
                       ) : (
-                        <span className="block w-full py-1.5 rounded text-center text-xs font-semibold select-none" style={{ border: '1px solid hsl(0 0% 22%)', color: 'hsl(0 0% 40%)', cursor: 'default' }}>
+                        <span className="block w-full py-1.5 rounded text-center text-xs font-semibold select-none" style={{ border: '1px solid hsl(0 0% 22%)', color: 'hsl(0 0% 40%)', cursor: 'default', pointerEvents: 'none' }}>
                           Launch This Version
                         </span>
                       )}
@@ -182,7 +185,7 @@ const PreviewLock = () => {
                           Start With Revision
                         </a>
                       ) : (
-                        <span className="block w-full py-1.5 rounded text-center text-xs font-bold select-none" style={{ backgroundColor: 'hsl(0 0% 20%)', color: 'hsl(0 0% 40%)', cursor: 'default' }}>
+                        <span className="block w-full py-1.5 rounded text-center text-xs font-bold select-none" style={{ backgroundColor: 'hsl(0 0% 20%)', color: 'hsl(0 0% 40%)', cursor: 'default', pointerEvents: 'none' }}>
                           Start With Revision
                         </span>
                       )}
@@ -233,7 +236,7 @@ const PreviewLock = () => {
                         Get Premium Version
                       </a>
                     ) : (
-                      <span className="block w-full py-2 rounded text-center text-sm font-bold select-none" style={{ backgroundColor: 'hsl(0 0% 20%)', color: 'hsl(0 0% 40%)', cursor: 'default' }}>
+                      <span className="block w-full py-2 rounded text-center text-sm font-bold select-none" style={{ backgroundColor: 'hsl(0 0% 20%)', color: 'hsl(0 0% 40%)', cursor: 'default', pointerEvents: 'none' }}>
                         Get Premium Version
                       </span>
                     )}
@@ -246,7 +249,7 @@ const PreviewLock = () => {
                 {isOnA ? (
                   <span
                     className="block py-2 rounded text-center text-xs font-semibold select-none"
-                    style={{ border: '1px solid hsl(0 0% 18%)', color: 'hsl(0 0% 35%)', backgroundColor: 'hsl(0 0% 12%)', cursor: 'default' }}
+                    style={{ border: '1px solid hsl(0 0% 18%)', color: 'hsl(0 0% 35%)', backgroundColor: 'hsl(0 0% 12%)', cursor: 'default', pointerEvents: 'none' }}
                   >
                     View Version A
                   </span>
@@ -267,7 +270,7 @@ const PreviewLock = () => {
                 {isVersionB ? (
                   <span
                     className="block py-2 rounded text-center text-xs font-semibold select-none"
-                    style={{ border: '1px solid hsl(0 0% 18%)', color: 'hsl(0 0% 35%)', backgroundColor: 'hsl(0 0% 12%)', cursor: 'default' }}
+                    style={{ border: '1px solid hsl(0 0% 18%)', color: 'hsl(0 0% 35%)', backgroundColor: 'hsl(0 0% 12%)', cursor: 'default', pointerEvents: 'none' }}
                   >
                     View Version B
                   </span>
