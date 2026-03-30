@@ -65,7 +65,7 @@ const About = () => {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="relative aspect-[4/3] rounded-lg overflow-hidden md:order-first">
                 <img
-                  src="https://www.spearfishbrewing.com/wp-content/uploads/2018/02/nathan.jpg"
+                  src="/images/nathan-venner.jpg"
                   alt="Brewmaster Nathan Venner"
                   className="w-full h-full object-cover"
                   loading="lazy"
