@@ -7,6 +7,7 @@ const navItems = [
   { label: 'Home', path: '/' },
   { label: 'Beer', path: '/beers' },
   { label: 'Food', path: '/menu' },
+  { label: 'Shop', path: 'https://spearfish-brewing.square.site/', external: true },
   { label: 'Contact Us', path: '/contact-us' },
 ];
 
