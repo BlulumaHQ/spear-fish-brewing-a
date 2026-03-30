@@ -150,7 +150,7 @@ const PreviewLock = () => {
                           Launch This Version
                         </a>
                       ) : (
-                        <span className="block w-full py-1.5 rounded text-center text-xs font-semibold select-none" style={{ border: '1px solid hsl(0 0% 22%)', color: 'hsl(0 0% 40%)', cursor: 'default' }}>
+                        <span className="block w-full py-1.5 rounded text-center text-xs font-semibold select-none" style={{ border: '1px solid hsl(0 0% 22%)', color: 'hsl(0 0% 40%)', cursor: 'default', pointerEvents: 'none' }}>
                           Launch This Version
                         </span>
                       )}
