@@ -10,6 +10,11 @@ const PreviewLock = () => {
   const location = useLocation();
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const currentHost = typeof window !== 'undefined' ? window.location.hostname : '';
+  const isVersionB = currentHost.includes('spear-fish-brewing-b');
+  const isHighlight499 = !isVersionB;
+  const isHighlight799 = isVersionB;
+
   // Auto-trigger popup on every internal page (not homepage) after 1 second
   useEffect(() => {
     if (timerRef.current) clearTimeout(timerRef.current);
