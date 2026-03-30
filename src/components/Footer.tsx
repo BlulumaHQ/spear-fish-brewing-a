@@ -13,10 +13,10 @@ const Footer = () => {
               A modern brewery and taproom located downtown Spearfish, South Dakota.
             </p>
             <div className="flex gap-4">
-              <a href="#" aria-label="Facebook" className="section-muted hover:opacity-80 transition-opacity">
+              <a href="https://www.facebook.com/spearfishbrewing" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="section-muted hover:opacity-80 transition-opacity">
                 <Facebook size={20} />
               </a>
-              <a href="#" aria-label="Instagram" className="section-muted hover:opacity-80 transition-opacity">
+              <a href="https://www.instagram.com/spearfishbrewing" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="section-muted hover:opacity-80 transition-opacity">
                 <Instagram size={20} />
               </a>
             </div>

@@ -1,4 +1,4 @@
-import { Trophy, Beer } from 'lucide-react';
+import { Trophy, Beer, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -26,33 +26,13 @@ const Beers = () => {
         </div>
       </section>
 
-      {/* Brewmaster */}
-      <section className="section-padding">
-        <div className="container-narrow">
-          <FadeIn>
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-2xl md:text-3xl font-bold mb-6">Meet the Brewmaster</h2>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                Our brewmaster, Nathan Venner, is a Pierre native who draws on his 13 years as a commercial brewmaster to create a wide variety of craft beer styles. Nathan started his professional brewing career in Laramie, Wyoming at the Altitude Chophouse. During his seven years as the brewmaster at Altitude, Nathan was able to experiment with dozens of creative and experimental beer styles.
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                He then took on the brewmaster position at the Lander Brewing Company where he honed his skills brewing a small number of award-winning flagship beers consistently from one batch to the next. Nathan's years of experience mean that he is comfortable crafting seasonal beers in every style while brewing consistent flagship brands year after year.
-              </p>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
       {/* Beer Grid */}
-      <section className="section-padding section-surface">
+      <section className="section-padding">
         <div className="container-wide">
-          <FadeIn>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">What's On Tap?</h2>
-          </FadeIn>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {beers.map((beer, i) => (
               <FadeIn key={beer.name} delay={i * 0.05}>
-                <div className="bg-background rounded-lg overflow-hidden h-full flex flex-col border border-border hover:shadow-lg transition-shadow">
+                <div className="bg-card rounded-lg overflow-hidden h-full flex flex-col border border-border hover:shadow-lg transition-shadow">
                   {beer.image && (
                     <div className="aspect-[4/3] overflow-hidden bg-muted">
                       <img
@@ -63,12 +43,12 @@ const Beers = () => {
                       />
                     </div>
                   )}
-                  <div className="p-6 flex flex-col flex-1">
+                  <div className="p-5 flex flex-col flex-1">
                     <div className="text-xs font-bold uppercase tracking-[0.15em] gold-accent mb-2">{beer.style}</div>
-                    <h3 className="text-xl font-bold mb-2">{beer.name}</h3>
+                    <h3 className="text-lg font-bold mb-2">{beer.name}</h3>
                     <p className="text-muted-foreground text-sm mb-4 leading-relaxed flex-1">{beer.description}</p>
-                    <div className="flex gap-4 text-xs font-semibold text-muted-foreground">
-                      <span>{beer.abv}% ABV</span>
+                    <div className="text-xs font-semibold text-muted-foreground">
+                      {beer.abv}% ABV
                     </div>
                     {beer.note && (
                       <div className="mt-2 text-xs text-muted-foreground italic">{beer.note}</div>
@@ -87,8 +67,8 @@ const Beers = () => {
         </div>
       </section>
 
-      {/* Brewing */}
-      <section className="section-padding">
+      {/* Brewing Process */}
+      <section className="section-padding section-surface">
         <div className="container-narrow">
           <FadeIn>
             <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -98,8 +78,6 @@ const Beers = () => {
                   alt="Spearfish Brewing at GABF"
                   className="w-full h-full object-cover"
                   loading="lazy"
-                  width={1024}
-                  height={683}
                 />
               </div>
               <div>
