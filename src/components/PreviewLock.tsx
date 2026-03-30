@@ -15,36 +15,19 @@ const PreviewLock = () => {
   const isHighlight499 = !isVersionB;
   const isHighlight799 = isVersionB;
 
-  // Auto-trigger popup on every internal page (not homepage) after 1 second
+  // Auto-trigger popup on EVERY page after 1 second
   useEffect(() => {
     if (timerRef.current) clearTimeout(timerRef.current);
-
-    const isHome = location.pathname === '/';
-    if (!isHome) {
-      timerRef.current = setTimeout(() => {
-        setPopupOpen(true);
-      }, 1000);
-    } else {
-      setPopupOpen(false);
-    }
-
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
+    timerRef.current = setTimeout(() => setPopupOpen(true), 1000);
+    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, [location.pathname]);
 
   return (
     <>
-      {/* TOP BAR — z-[9999] ensures highest layer */}
+      {/* TOP BAR */}
       <div
         className="fixed top-0 left-0 right-0 flex items-center justify-between px-4 sm:px-6 py-2"
-        style={{
-          zIndex: 9999,
-          backgroundColor: 'hsl(0 0% 8%)',
-          borderBottom: '1px solid hsl(0 0% 15%)',
-          color: 'hsl(0 0% 85%)',
-          fontSize: '13px',
-        }}
+        style={{ zIndex: 9999, backgroundColor: 'hsl(0 0% 8%)', borderBottom: '1px solid hsl(0 0% 15%)', color: 'hsl(0 0% 85%)', fontSize: '13px' }}
       >
         <span className="truncate">This preview is valid for 72 hours</span>
         <button
@@ -62,11 +45,7 @@ const PreviewLock = () => {
       <button
         onClick={() => setPopupOpen(true)}
         className="hidden md:block fixed right-6 cursor-pointer px-5 py-3 rounded-lg text-sm font-bold text-black shadow-lg transition-colors"
-        style={{
-          zIndex: 9998,
-          bottom: '90px',
-          backgroundColor: CTA_COLOR,
-        }}
+        style={{ zIndex: 9998, bottom: '90px', backgroundColor: CTA_COLOR }}
         onMouseEnter={e => (e.currentTarget.style.backgroundColor = CTA_HOVER)}
         onMouseLeave={e => (e.currentTarget.style.backgroundColor = CTA_COLOR)}
       >
@@ -75,28 +54,19 @@ const PreviewLock = () => {
 
       {/* POPUP + OVERLAY */}
       {popupOpen && (
-        <div
-          className="fixed inset-0 flex items-center justify-center"
-          style={{ zIndex: 10000 }}
-        >
+        <div className="fixed inset-0 flex items-center justify-center" style={{ zIndex: 10000 }}>
           {/* Dim overlay — NO blur */}
           <div
             className="absolute inset-0"
-            style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
+            style={{ backgroundColor: 'rgba(0,0,0,0.45)' }}
             onClick={() => setPopupOpen(false)}
           />
 
           {/* Popup card */}
           <div
-            className="relative w-[95vw] max-w-xl mx-auto rounded-xl shadow-2xl overflow-y-auto"
-            style={{
-              backgroundColor: 'hsl(0 0% 10%)',
-              border: '1px solid hsl(0 0% 20%)',
-              color: 'hsl(0 0% 90%)',
-              maxHeight: '90vh',
-            }}
+            className="relative w-[95vw] max-w-2xl mx-auto rounded-xl shadow-2xl overflow-y-auto"
+            style={{ backgroundColor: 'hsl(0 0% 10%)', border: '1px solid hsl(0 0% 20%)', color: 'hsl(0 0% 90%)', maxHeight: '90vh' }}
           >
-            {/* Close button */}
             <button
               onClick={() => setPopupOpen(false)}
               className="absolute top-3 right-3 p-1 rounded-full transition-colors cursor-pointer"
@@ -131,7 +101,6 @@ const PreviewLock = () => {
                 ))}
               </div>
 
-              {/* Section title */}
               <p className="text-center text-sm font-semibold mb-4" style={{ color: 'hsl(0 0% 80%)' }}>
                 Choose Your Website Version
               </p>
@@ -145,6 +114,7 @@ const PreviewLock = () => {
                     backgroundColor: isHighlight499 ? 'hsl(38 10% 11%)' : 'hsl(0 0% 12%)',
                     border: isHighlight499 ? `2px solid ${CTA_COLOR}` : '1px solid hsl(0 0% 20%)',
                     boxShadow: isHighlight499 ? '0 0 20px hsl(38 65% 52% / 0.15)' : 'none',
+                    opacity: isHighlight499 ? 1 : 0.7,
                   }}
                 >
                   <div className="text-center mb-3">
@@ -157,7 +127,7 @@ const PreviewLock = () => {
                     <div className="rounded-md p-3 flex flex-col" style={{ backgroundColor: 'hsl(0 0% 14%)', border: '1px solid hsl(0 0% 22%)' }}>
                       <p className="text-xs font-semibold mb-0.5" style={{ color: 'hsl(0 0% 55%)' }}>BASIC</p>
                       <p className="text-sm font-bold mb-1" style={{ color: 'hsl(0 0% 90%)' }}>Launch As-Is — $299</p>
-                      <p className="text-[11px] mb-2 flex-1" style={{ color: 'hsl(0 0% 60%)' }}>Launch exactly as shown in this version.</p>
+                      <p className="text-[11px] mb-2 flex-1" style={{ color: 'hsl(0 0% 60%)' }}>Get your website exactly as shown in this preview. Fastest way to go live.</p>
                       <a
                         href="https://spear-fish-brewing-a.lovable.app/"
                         target="_blank"
@@ -171,7 +141,7 @@ const PreviewLock = () => {
                       </a>
                     </div>
 
-                    {/* $499 highlighted */}
+                    {/* $499 */}
                     <div
                       className="rounded-md p-3 flex flex-col relative"
                       style={{
@@ -185,8 +155,8 @@ const PreviewLock = () => {
                         </span>
                       )}
                       <p className="text-xs font-semibold mb-0.5 mt-1" style={{ color: isHighlight499 ? CTA_COLOR : 'hsl(0 0% 55%)' }}>REVISION</p>
-                      <p className="text-sm font-bold mb-1" style={{ color: 'hsl(0 0% 95%)' }}>Launch + 1 Revision — $499</p>
-                      <p className="text-[11px] mb-2 flex-1" style={{ color: 'hsl(0 0% 65%)' }}>We refine this version based on your feedback before launch.</p>
+                      <p className="text-sm font-bold mb-1" style={{ color: 'hsl(0 0% 95%)' }}>Launch + 2 Revisions — $499</p>
+                      <p className="text-[11px] mb-2 flex-1" style={{ color: 'hsl(0 0% 65%)' }}>We refine your website based on your feedback before launch.</p>
                       <a
                         href="https://spear-fish-brewing-a.lovable.app/"
                         target="_blank"
@@ -209,6 +179,7 @@ const PreviewLock = () => {
                     backgroundColor: isHighlight799 ? 'hsl(38 10% 11%)' : 'hsl(0 0% 12%)',
                     border: isHighlight799 ? `2px solid ${CTA_COLOR}` : '1px solid hsl(0 0% 20%)',
                     boxShadow: isHighlight799 ? '0 0 20px hsl(38 65% 52% / 0.15)' : 'none',
+                    opacity: isHighlight799 ? 1 : 0.7,
                   }}
                 >
                   <div className="text-center mb-3">
@@ -230,7 +201,7 @@ const PreviewLock = () => {
                     )}
                     <p className="text-xs font-semibold mb-0.5 mt-1" style={{ color: isHighlight799 ? CTA_COLOR : 'hsl(0 0% 55%)' }}>PREMIUM</p>
                     <p className="text-sm font-bold mb-1" style={{ color: 'hsl(0 0% 95%)' }}>Premium Conversion — $799</p>
-                    <p className="text-[11px] mb-3 flex-1" style={{ color: 'hsl(0 0% 65%)' }}>Designed to improve conversions and customer engagement.</p>
+                    <p className="text-[11px] mb-3 flex-1" style={{ color: 'hsl(0 0% 65%)' }}>The upgraded version designed to improve conversions and customer engagement.</p>
                     <a
                       href="https://spear-fish-brewing-b.lovable.app/"
                       target="_blank"
@@ -246,7 +217,32 @@ const PreviewLock = () => {
                 </div>
               </div>
 
-              {/* Stripe */}
+              {/* Cross-version navigation */}
+              <div className="grid grid-cols-2 gap-3 mb-4">
+                <a
+                  href="https://spear-fish-brewing-a.lovable.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block py-2 rounded text-center text-xs font-semibold transition-colors"
+                  style={{ border: '1px solid hsl(0 0% 30%)', color: 'hsl(0 0% 70%)', backgroundColor: 'transparent' }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = CTA_COLOR; e.currentTarget.style.color = CTA_COLOR; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'hsl(0 0% 30%)'; e.currentTarget.style.color = 'hsl(0 0% 70%)'; }}
+                >
+                  View Version A
+                </a>
+                <a
+                  href="https://spear-fish-brewing-b.lovable.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block py-2 rounded text-center text-xs font-semibold transition-colors"
+                  style={{ border: '1px solid hsl(0 0% 30%)', color: 'hsl(0 0% 70%)', backgroundColor: 'transparent' }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = CTA_COLOR; e.currentTarget.style.color = CTA_COLOR; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'hsl(0 0% 30%)'; e.currentTarget.style.color = 'hsl(0 0% 70%)'; }}
+                >
+                  View Version B
+                </a>
+              </div>
+
               <p className="text-center text-[11px]" style={{ color: 'hsl(0 0% 45%)' }}>
                 Secure checkout powered by Stripe
               </p>
