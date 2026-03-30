@@ -185,7 +185,7 @@ const PreviewLock = () => {
                           Start With Revision
                         </a>
                       ) : (
-                        <span className="block w-full py-1.5 rounded text-center text-xs font-bold select-none" style={{ backgroundColor: 'hsl(0 0% 20%)', color: 'hsl(0 0% 40%)', cursor: 'default' }}>
+                        <span className="block w-full py-1.5 rounded text-center text-xs font-bold select-none" style={{ backgroundColor: 'hsl(0 0% 20%)', color: 'hsl(0 0% 40%)', cursor: 'default', pointerEvents: 'none' }}>
                           Start With Revision
                         </span>
                       )}
