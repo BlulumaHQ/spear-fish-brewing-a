@@ -246,47 +246,28 @@ const PreviewLock = () => {
 
               {/* Cross-version navigation */}
               <div className="grid grid-cols-2 gap-3 mb-4">
-                {isOnA ? (
-                  <span
-                    className="block py-2 rounded text-center text-xs font-semibold select-none"
-                    style={{ border: '1px solid hsl(0 0% 18%)', color: 'hsl(0 0% 35%)', backgroundColor: 'hsl(0 0% 12%)', cursor: 'default', pointerEvents: 'none' }}
-                  >
-                    View Version A
-                  </span>
-                ) : (
-                  <a
-                    href="https://spear-fish-brewing-a.lovable.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block py-2 rounded text-center text-xs font-semibold transition-colors"
-                    style={{ border: '1px solid hsl(0 0% 30%)', color: 'hsl(0 0% 70%)', backgroundColor: 'transparent' }}
-                    onMouseEnter={e => { e.currentTarget.style.borderColor = CTA_COLOR; e.currentTarget.style.color = CTA_COLOR; }}
-                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'hsl(0 0% 30%)'; e.currentTarget.style.color = 'hsl(0 0% 70%)'; }}
-                  >
-                    View Version A
-                  </a>
-                )}
-
-                {isVersionB ? (
-                  <span
-                    className="block py-2 rounded text-center text-xs font-semibold select-none"
-                    style={{ border: '1px solid hsl(0 0% 18%)', color: 'hsl(0 0% 35%)', backgroundColor: 'hsl(0 0% 12%)', cursor: 'default', pointerEvents: 'none' }}
-                  >
-                    View Version B
-                  </span>
-                ) : (
-                  <a
-                    href="https://spear-fish-brewing-b.lovable.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block py-2 rounded text-center text-xs font-semibold transition-colors"
-                    style={{ border: '1px solid hsl(0 0% 30%)', color: 'hsl(0 0% 70%)', backgroundColor: 'transparent' }}
-                    onMouseEnter={e => { e.currentTarget.style.borderColor = CTA_COLOR; e.currentTarget.style.color = CTA_COLOR; }}
-                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'hsl(0 0% 30%)'; e.currentTarget.style.color = 'hsl(0 0% 70%)'; }}
-                  >
-                    View Version B
-                  </a>
-                )}
+                <a
+                  href="https://spear-fish-brewing-a.lovable.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block py-2 rounded text-center text-xs font-semibold transition-colors"
+                  style={{ border: '1px solid hsl(0 0% 30%)', color: 'hsl(0 0% 70%)', backgroundColor: 'transparent' }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = CTA_COLOR; e.currentTarget.style.color = CTA_COLOR; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'hsl(0 0% 30%)'; e.currentTarget.style.color = 'hsl(0 0% 70%)'; }}
+                >
+                  View Version A
+                </a>
+                <a
+                  href="https://spear-fish-brewing-b.lovable.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block py-2 rounded text-center text-xs font-semibold transition-colors"
+                  style={{ border: '1px solid hsl(0 0% 30%)', color: 'hsl(0 0% 70%)', backgroundColor: 'transparent' }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = CTA_COLOR; e.currentTarget.style.color = CTA_COLOR; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'hsl(0 0% 30%)'; e.currentTarget.style.color = 'hsl(0 0% 70%)'; }}
+                >
+                  View Version B
+                </a>
               </div>
 
               <p className="text-center text-[11px]" style={{ color: 'hsl(0 0% 45%)' }}>
